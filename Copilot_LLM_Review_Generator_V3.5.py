@@ -71,7 +71,7 @@ AZURE_OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
 
 
 #Reading the dataset
-Sentiment_Data  = pd.read_csv("Sampled_Copilot_Reviews_50k_Translated_v2.csv")
+Sentiment_Data  = pd.read_csv("Sampled_Copilot_Reviews_Final.csv")
 
 #Function to derive Sentiment Score based on Sentiment
 def Sentiment_Score_Derivation(value):
@@ -120,7 +120,7 @@ def get_vector_store(text_chunks):
     try:
         embeddings = AzureOpenAIEmbeddings(azure_deployment="MV_Agusta")
         vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
-        vector_store.save_local("faiss_index_Copilot_50K_v2")
+        vector_store.save_local("faiss_index_CopilotSample")
         return vector_store
     except Exception as e:
         err = f"An error occurred while getting vectos: {e}"
@@ -191,7 +191,7 @@ w pertains, enabling comparisons and trend analysis across different product fam
         return err
 
 # Function to handle user queries using the existing vector store
-def query_detailed(user_question, history, vector_store_path="faiss_index_Copilot_50K_v2"):
+def query_detailed(user_question, history, vector_store_path="faiss_index_CopilotSample"):
     try:
         embeddings = AzureOpenAIEmbeddings(azure_deployment="MV_Agusta")
         vector_store = FAISS.load_local(vector_store_path, embeddings, allow_dangerous_deserialization=True)
@@ -321,7 +321,7 @@ def get_conversational_chain_quant(history):
         return err
 
 #Function to convert user prompt to quantitative outputs for Copilot Review Summarization
-def query_quant(user_question, history, vector_store_path="faiss_index_Copilot_50K_v2"):
+def query_quant(user_question, history, vector_store_path="faiss_index_CopilotSample"):
     try:
         # Initialize the embeddings model
         embeddings = AzureOpenAIEmbeddings(azure_deployment="MV_Agusta")
@@ -397,10 +397,10 @@ def review_summarization(user_question, history):
     try:
         txt_file_path = "Sample_Copilot_Reviews_50K_Translated_v2.txt"
         # Automatically call setup with the predefined file on startup
-        if not os.path.exists("faiss_index_Copilot_50K_v2"):
+        if not os.path.exists("faiss_index_CopilotSample"):
             setup(txt_file_path)
 
-        if os.path.exists("faiss_index_Copilot_50K_v2"):
+        if os.path.exists("faiss_index_CopilotSample"):
             response = query_detailed(user_question, history)
             return response
         else:
