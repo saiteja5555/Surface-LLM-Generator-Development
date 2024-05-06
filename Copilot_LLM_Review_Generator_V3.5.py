@@ -1,35 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[46]:
-
-
-# Copilot LLM Review Generator V1.0
-# Created on: 23rd April, 2024
-# Modified on: 24th April, 2024
-# Author: Mu Sigma Inc.
-
-#This notebook has following features:
-    ##Generate a summary of the Copilot reviews from user prompt
-    ##Generate a comparison of Copilot features based on reviews from user prompt
-    ##Generate feature suggestion of Copilot based on the reviews from user prompt
-    ##Generate Quantitative numbers around Copilot Reviews from user prompt
-    ##Automatically identify the nature of the user question and what is being asked and print corresponding outputs
-    ##Retain context based on conversation history
-
-#In V2 version, we have made some bug fixes. We have also removed the retain context based on conversation history feature due to bugs.
-#In V3, we have improved the UI.
-#In V3.1, we have refined the prompts.
-#In V3.2, we have implemented exception handling
-#In V3.3, retaining context based on conversation history.
-
-
 #Import Required Libraries
 import gradio as gr
 import streamlit as st
@@ -498,15 +466,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# In[47]:
-
-
-device_llm_review_generator("Give me total reviews count across geographies", '')
-
-
-# In[ ]:
 
 
 
