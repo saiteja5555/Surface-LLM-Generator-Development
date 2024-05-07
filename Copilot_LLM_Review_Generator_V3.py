@@ -1,5 +1,4 @@
 #Import Required Libraries
-import gradio as gr
 import streamlit as st
 from azure.core.credentials import AzureKeyCredential
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -19,7 +18,6 @@ import pyodbc
 import urllib
 from sqlalchemy import create_engine
 import pandas as pd
-import keyring
 from azure.identity import InteractiveBrowserCredential
 from pandasai import SmartDataframe
 import pandas as pd
@@ -30,7 +28,6 @@ import time
 from PIL import Image
 import base64
 import pandasql as ps
-from IPython.display import clear_output
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 #Initializing API Keys to use LLM
